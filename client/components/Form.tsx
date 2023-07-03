@@ -6,14 +6,8 @@ const neutralsound = new Audio('../components/sound/Cepiano.WAV')
 const positivesound = new Audio('../components/sound/Gepiano.WAV')
 const negativeaudiosound = new Audio('../components/sound/Bdimepiano.WAV')
 
-const savePrompt = () => {
-  return (
-    <div>
-      <div></div>
-    </div>
-  )
-}
-
+const neutralsoundstring = '../components/sound/Cepiano.WAV'
+console.log('consolelog1: ', neutralsound)
 const Form = () => {
   const [userInput, setuserInput] = useState('')
   const [sentimentScore, setSentimentScore] = useState(null)
@@ -21,6 +15,17 @@ const Form = () => {
   useEffect(() => {
     setSentimentScore(sentiment.analyze(userInput))
   }, [userInput])
+
+  // useEffect(() => {
+  //   if (sentimentScore && sentimentScore.score === 0) {
+  //     neutralsound.play()
+  //   }
+  //   else if ( sentimentScore && sentimentScore.score < 1) {
+  //      positivesound.play()
+  //   } else (sentimentScore && sentimentScore.score < -1) {
+  //     negativeaudiosound.play()
+  //   }
+  // }, [sentimentScore])
 
   // function addSentimentScore() {
   //   const newSentiment = sentimentScore
@@ -48,7 +53,6 @@ const Form = () => {
           sentimentScore.score === 0 ? (
             <div>
               <img alt="neutral" />
-              <audio onChange={neutralsound}></audio>
             </div>
           ) : sentimentScore.score > 0 ? (
             <img alt="postive" />
